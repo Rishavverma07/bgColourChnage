@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      
+    }
+   body{
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    background-image: linear-gradient(to right, #df218c, #b31438)
+    
+   }
+   section{
+    text-align: center;
+   }
+   button{
+    padding: 12px 24px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease,box-shadow 0.3s ease;
+   
+
+   }
+   #myBtn1{
+    background-color: #051937;
+    color: white;
+   }
+   #myBtn2{
+    background-color: white;
+    color: #051937;
+   }
+
+   button:hover{
+     transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+   }
+
+   p{
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: white;
+
+   }
+
+   .copyCode {
+    margin-top: 20px;
+    color:#e5f6ff;
+    background-color: #ffffff1a;
+    padding: 15px 20px;
+    border-radius: 15px;
+    font-size: 0.95rem;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    
+
+  } 
+  
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+  <section>
+    <div id="myDiv">
+      <button id="myBtn1">#051937</button>
+      <button id="myBtn2">#008793</button>
+
+      <p>Copy your code here</p>
+      <div class="copyCode">
+        background-image: linear-gradient(to right, rgb(92,145,229), rgb(152,63,198))
+      
+      </div>
+    </div>
+
+  </section>
+
+  <script>
+     let myBtn1 = document.getElementById('myBtn1');
+     let myBtn2 = document.getElementById('myBtn2');
+     let copyCode = document.querySelector('.copyCode');
+
+
+     const randValue = ()=>{
+       let rValue = '0123456789abcdef'
+      let colors = '#';
+      for(let i = 0;i<6;i++){
+        colors = colors+(rValue[Math.floor(Math.random()*16)]);
+        
+      }
+      return colors;
+     }
+     
+     let bgCol  = '#df218c';
+     let bgCol2 = '#b31438';
+
+     const bgColor = ()=>{
+      bgCol = randValue();
+      console.log(bgCol);
+      myBtn1.textContent = bgCol;
+      document.body.style.backgroundImage = `linear-gradient(to right,${bgCol}, ${bgCol2})`;
+      copyCode.textContent = `background-image: linear-gradient(to right, ${bgCol}, ${bgCol2}`;
+
+     }
+
+     const bgColor2 = ()=>{
+      bgCol2 = randValue();
+      console.log(bgCol2);
+      myBtn2.textContent = bgCol2;
+      document.body.style.backgroundImage = `linear-gradient(to right,${bgCol}, ${bgCol2})`;
+      copyCode.textContent = `background-image: linear-gradient(to right, ${bgCol}, ${bgCol2}`;
+      
+     }
+
+     myBtn1.addEventListener('click',()=>{
+      bgColor();
+     })
+
+      myBtn2.addEventListener('click',()=>{
+      bgColor2();
+     })
+
+     copyCode.addEventListener('click',()=>{
+      navigator.clipboard.writeText(copyCode.textContent);
+      alert('Copied Successfully');
+      
+     })
+     
+
+
+  </script>
+</body>
+
+</html>
